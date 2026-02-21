@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 std::string replace(std::string buf, const std::string s1, const std::string s2)
 {
@@ -17,9 +18,40 @@ std::string replace(std::string buf, const std::string s1, const std::string s2)
     return buf;
 }
 
-int main() 
+int main(int ac, char **av)
 {
-    std::string test = "hello hello world";
-    test = replace(test, "hello", "hi");
-    std::cout << test << std::endl;
+    if (ac != 4)
+    {
+        std::cerr << "Invalid number of argument." << std::endl;
+        return 1;
+    }
+
+    std::ifstream filestream(av[1]);
+    if (!filestream)
+    {
+        std::cerr << "Couldn't open infile." << std::endl;
+        return 1;
+    }
+
+    std::string file = std::string(av[1]) + ".replace";
+    std::ofstream outstream(file.c_str());
+    if (!outstream)
+    {
+        std::cerr << "Couldn't open outfile." << std::endl;
+        return 1;
+    }
+
+    std::string line;
+
+    while (std::getline(filestream, line))
+    {
+        outstream << replace(line, av[2], av[3]);
+        if (!filestream.eof())
+            outstream << std::endl;
+    }
+
+    filestream.close();
+    outstream.close();
+
+    return 0;
 }
