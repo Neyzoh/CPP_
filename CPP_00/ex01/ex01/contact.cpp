@@ -6,7 +6,7 @@
 /*   By: adammour <skn.aga108@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:50 by adammour          #+#    #+#             */
-/*   Updated: 2026/02/06 19:43:59 by adammour         ###   ########.fr       */
+/*   Updated: 2026/02/13 19:59:11 by adammour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Contact::Contact(void):first_name(""),last_name(""),nickname(""),phone_number(""
 Contact::~Contact(void)
 {
 }
+
 void Contact::setfirstname(std::string first_name)
 {
     this->first_name = first_name;

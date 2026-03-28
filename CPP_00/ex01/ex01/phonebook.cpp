@@ -6,7 +6,7 @@
 /*   By: adammour <skn.aga108@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:27:47 by adammour          #+#    #+#             */
-/*   Updated: 2026/02/06 21:23:41 by adammour         ###   ########.fr       */
+/*   Updated: 2026/02/11 12:59:33 by adammour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ std::string truncate10(const std::string& input)
     if (input.size() <= 10) 
         return input;                // rien à couper
     return input.substr(0, 9) + ".";      // on garde les 10 premiers chars
-    
 }
 
 void PhoneBook::searchContact(void)
