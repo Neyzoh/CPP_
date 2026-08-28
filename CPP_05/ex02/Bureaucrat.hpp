@@ -5,20 +5,25 @@
 #include <stdexcept>
 #include <ostream>
 
-class AForm; // forward declaration
+class AForm;
 
-class Bureaucrat {
+class Bureaucrat 
+{
 public:
-    class GradeTooHighException : public std::exception {
+    class GradeTooHighException : public std::exception 
+    {
     public:
-        virtual const char* what() const throw() {
+        virtual const char* what() const throw() 
+        {
             return "Bureaucrat::GradeTooHighException";
         }
     };
 
-    class GradeTooLowException : public std::exception {
+    class GradeTooLowException : public std::exception 
+    {
     public:
-        virtual const char* what() const throw() {
+        virtual const char* what() const throw() 
+        {
             return "Bureaucrat::GradeTooLowException";
         }
     };
@@ -47,4 +52,4 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
-#endif // BUREAUCRAT_HPP
+#endif

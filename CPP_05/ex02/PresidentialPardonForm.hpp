@@ -4,7 +4,8 @@
 #include "AForm.hpp"
 #include <string>
 
-class PresidentialPardonForm : public AForm {
+class PresidentialPardonForm : public AForm 
+{
 public:
     PresidentialPardonForm();
     PresidentialPardonForm(const std::string& target);
@@ -18,4 +19,4 @@ private:
     std::string target_;
 };
 
-#endif // PRESIDENTIALPARDONFORM_HPP
+#endif

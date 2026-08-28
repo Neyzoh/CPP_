@@ -4,7 +4,8 @@
 #include "AForm.hpp"
 #include <string>
 
-class RobotomyRequestForm : public AForm {
+class RobotomyRequestForm : public AForm 
+{
 public:
     RobotomyRequestForm();
     RobotomyRequestForm(const std::string& target);
@@ -18,4 +19,4 @@ private:
     std::string target_;
 };
 
-#endif // ROBOTOMYREQUESTFORM_HPP
+#endif

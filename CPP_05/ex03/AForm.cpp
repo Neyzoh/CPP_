@@ -1,29 +1,25 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-// --- Vérification des grades ---
 
-void AForm::checkGrade(int grade) {
+void AForm::checkGrade(int grade) 
+{
     if (grade < 1)
         throw GradeTooHighException();
     if (grade > 150)
         throw GradeTooLowException();
 }
 
-// --- Vérification avant exécution ---
 
-void AForm::checkExecuteRequirements(Bureaucrat const & executor) const {
+void AForm::checkExecuteRequirements(Bureaucrat const & executor) const 
+{
     if (!isSigned_)
         throw FormNotSignedException();
     if (executor.getGrade() > gradeToExec_)
         throw GradeTooLowException();
 }
 
-// --- Forme canonique ---
-
-AForm::AForm()
-    : name_("default"), isSigned_(false),
-      gradeToSign_(150), gradeToExec_(150) {}
+AForm::AForm(): name_("default"), isSigned_(false),gradeToSign_(150), gradeToExec_(150) {}
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec)
     : name_(name), isSigned_(false),

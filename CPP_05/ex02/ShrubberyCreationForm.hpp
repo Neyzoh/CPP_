@@ -4,7 +4,8 @@
 #include "AForm.hpp"
 #include <string>
 
-class ShrubberyCreationForm : public AForm {
+class ShrubberyCreationForm : public AForm 
+{
 public:
     ShrubberyCreationForm();
     ShrubberyCreationForm(const std::string& target);
@@ -18,4 +19,4 @@ private:
     std::string target_;
 };
 
-#endif // SHRUBBERYCREATIONFORM_HPP
+#endif

@@ -18,19 +18,17 @@ int main() {
         std::cout << robo << std::endl;
         std::cout << pardon << std::endl;
 
-        // Signature
-        mid.signForm(shrub);   // OK (sign 145)
-        high.signForm(robo);   // OK (sign 72)
-        high.signForm(pardon); // OK (sign 25)
+        mid.signForm(shrub);   
+        high.signForm(robo);   
+        high.signForm(pardon); 
 
-        // Exécution
-        low.executeForm(shrub);   // échec (grade trop bas)
-        mid.executeForm(shrub);   // OK (exec 137)
+        low.executeForm(shrub);   
+        mid.executeForm(shrub);
 
-        mid.executeForm(robo);    // échec (45)
-        high.executeForm(robo);   // OK
+        mid.executeForm(robo);  
+        high.executeForm(robo);
 
-        high.executeForm(pardon); // OK (exec 5)
+        high.executeForm(pardon); 
 
     } catch (std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
