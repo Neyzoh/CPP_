@@ -1,13 +1,15 @@
 #include "Serializer.hpp"
 
-Serializer::Serializer() {}
-
-std::size_t Serializer::serialize(Data* ptr) 
+Serializer::Serializer()
 {
-    return reinterpret_cast<std::size_t>(ptr);
 }
 
-Data* Serializer::deserialize(std::size_t raw) 
+uintptr_t Serializer::serialize(Data* ptr)
+{
+    return reinterpret_cast<uintptr_t>(ptr);
+}
+
+Data* Serializer::deserialize(uintptr_t raw)
 {
     return reinterpret_cast<Data*>(raw);
 }

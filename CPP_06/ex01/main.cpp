@@ -2,32 +2,32 @@
 #include "Serializer.hpp"
 #include <iostream>
 #include <cstring>
-#include <cstddef>
+#include <stdint.h>
 
-int main() 
+int main()
 {
     Data data;
-    data.value = 42;
-    data.f = 3.14f;
-    std::memset(data.name, 0, sizeof(data.name));
-    std::strcpy(data.name, "test");
 
-    std::cout << "Original address: " << &data << std::endl;
-    std::cout << "data.value = " << data.value << ", data.f = " << data.f
-              << ", data.name = " << data.name << std::endl;
+    data.value = -42;
+    std::strcpy(data.name, "");
 
-    std::size_t raw = Serializer::serialize(&data);
-    std::cout << "Serialized (std::size_t): " << raw << std::endl;
+    Data* original = &data;
+
+    std::cout << "Original address: "<< original << std::endl;
+    std::cout << "Original data: " << data.value << ", "<< data.name << std::endl;
+
+    uintptr_t raw = Serializer::serialize(original);
+
+    std::cout << "Serialized value: "<< raw << std::endl;
 
     Data* recovered = Serializer::deserialize(raw);
-    std::cout << "Deserialized address: " << recovered << std::endl;
-    std::cout << "recovered->value = " << recovered->value
-              << ", recovered->f = " << recovered->f
-              << ", recovered->name = " << recovered->name << std::endl;
 
-    if (recovered == &data) 
-        std::cout << "SUCCESS: deserialized pointer equals original pointer." << std::endl;
-    else 
-        std::cout << "FAILURE: deserialized pointer differs from original pointer." << std::endl;
+    std::cout << "Recovered address: "<< recovered << std::endl;
+    std::cout << "Recovered data: "<< recovered->value << ", " << recovered->name << std::endl;
+
+    if (recovered == original)
+        std::cout << "SUCCESS"<< std::endl;
+    else
+        std::cout << "FAILURE"<< std::endl;
     return 0;
 }

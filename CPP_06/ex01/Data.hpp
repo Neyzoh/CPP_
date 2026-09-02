@@ -1,11 +1,10 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
-struct Data 
+struct Data
 {
     int value;
-    float f;
-    char name[32];
+    char name[24];
 };
 
 #endif

@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <limits>
 #include <cmath>
+#include <cctype>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter() 
 {
@@ -18,10 +20,14 @@ bool ScalarConverter::isIntLiteral(const std::string& s)
 {
     if (s.empty()) return false;
     size_t start = 0;
-    if (s[0] == '+' || s[0] == '-') start = 1;
-    if (start == s.size()) return false;
-    for (size_t i = start; i < s.size(); ++i) {
-        if (!std::isdigit(static_cast<unsigned char>(s[i]))) return false;
+    if (s[0] == '+' || s[0] == '-') 
+        start = 1;
+    if (start == s.size()) 
+        return false;
+    for (size_t i = start; i < s.size(); ++i) 
+    {
+        if (!std::isdigit(static_cast<unsigned char>(s[i]))) 
+            return false;
     }
     return true;
 }
@@ -38,11 +44,14 @@ bool ScalarConverter::isPseudoDouble(const std::string& s)
 
 bool ScalarConverter::isFloatLiteral(const std::string& s) 
 {
-    if (isPseudoFloat(s)) return true;
-    if (s.empty() || s[s.size() - 1] != 'f') return false;
+    if (isPseudoFloat(s)) 
+        return true;
+    if (s.empty() || s[s.size() - 1] != 'f') 
+        return false;
 
     std::string num = s.substr(0, s.size() - 1);
-    if (num.empty()) return false;
+    if (num.empty()) 
+        return false;
 
     size_t start = 0;
     if (num[0] == '+' || num[0] == '-') 
@@ -84,8 +93,9 @@ bool ScalarConverter::isDoubleLiteral(const std::string& s)
         char c = s[i];
         if (c == '.') 
         {
-            if (hasDot) return false;
-                hasDot = true;
+            if (hasDot) 
+                return false;
+            hasDot = true;
         } 
         else if (!std::isdigit(static_cast<unsigned char>(c)))
             return false;
@@ -134,38 +144,45 @@ void ScalarConverter::printInt(double value)
     std::cout << static_cast<int>(value) << std::endl;
 }
 
-void ScalarConverter::printFloat(double value) 
+void ScalarConverter::printFloat(double value)
 {
     std::cout << "float: ";
-    if (std::isnan(value)) 
+
+    if (std::isnan(value))
         std::cout << "nanf" << std::endl;
-    else if (std::isinf(value)) 
+    else if (std::isinf(value))
     {
-        if (value > 0) 
+        if (value > 0)
             std::cout << "+inff" << std::endl;
-        else           
+        else
             std::cout << "-inff" << std::endl;
-    } 
-    else 
-        std::cout << value << "f" << std::endl;
+    }
+    else
+    {
+        std::cout << std::fixed << std::setprecision(1)<< static_cast<float>(value) << "f" << std::endl;
+        std::cout.unsetf(std::ios::floatfield);
+    }
 }
 
-void ScalarConverter::printDouble(double value) 
+void ScalarConverter::printDouble(double value)
 {
     std::cout << "double: ";
-    if (std::isnan(value)) 
+
+    if (std::isnan(value))
         std::cout << "nan" << std::endl;
-    else if (std::isinf(value)) 
+    else if (std::isinf(value))
     {
-        if (value > 0) 
+        if (value > 0)
             std::cout << "+inf" << std::endl;
         else
             std::cout << "-inf" << std::endl;
-    } 
-    else 
-        std::cout << value << std::endl;
+    }
+    else
+    {
+        std::cout << std::fixed << std::setprecision(1)<< value << std::endl;
+        std::cout.unsetf(std::ios::floatfield);
+    }
 }
-
 void ScalarConverter::convert(const std::string& literal) 
 {
     double value = 0.0;

@@ -1,17 +1,17 @@
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <cstddef>
+#include <stdint.h>
 #include "Data.hpp"
 
-class Serializer 
+class Serializer
 {
 private:
     Serializer();
 
 public:
-    static std::size_t serialize(Data* ptr);
-    static Data* deserialize(std::size_t raw);
+    static uintptr_t serialize(Data* ptr);
+    static Data* deserialize(uintptr_t raw);
 };
 
-#endif 
+#endif
